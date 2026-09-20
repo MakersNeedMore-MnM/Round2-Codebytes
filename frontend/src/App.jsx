@@ -183,8 +183,8 @@ export default function App() {
       )}
 
       {/* Main Navbar */}
-      <header className="bg-white border-b border-[#D4C4A8] sticky top-0 z-40 px-6 py-3.5 flex items-center justify-between shadow-xs">
-        <div className="flex items-center gap-3">
+      <header className="bg-white border-b border-[#D4C4A8] sticky top-0 z-40 px-3 sm:px-6 py-3 flex items-center justify-between shadow-xs">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
           <div className="w-9 h-9 rounded-2xl bg-[#0D1B2A] text-[#F4F1DE] flex items-center justify-center shadow-md shadow-[#0D1B2A]/15">
             <Radio size={19} className="text-[#778D7A]" />
           </div>
@@ -220,7 +220,7 @@ export default function App() {
       </header>
 
       {/* Main Workspace */}
-      <main className="flex-1 max-w-5xl w-full mx-auto p-6">
+      <main className="flex-1 max-w-5xl w-full mx-auto px-3 py-4 sm:p-6 overflow-x-hidden">
         {currentUser.role === 'customer' ? (
           <CustomerView postedByName={currentUser.name} />
         ) : (

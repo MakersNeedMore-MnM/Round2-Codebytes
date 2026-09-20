@@ -130,7 +130,7 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
       )}
 
       {/* Broadcast Form */}
-      <div className="bg-[#FFFFFF] rounded-3xl border border-[#D4C4A8] p-8 shadow-sm">
+      <div className="bg-[#FFFFFF] rounded-3xl border border-[#D4C4A8] p-4 sm:p-8 shadow-sm">
         <div className="mb-6">
           <h2 className="text-xl font-bold text-[#0D1B2A] flex items-center gap-2">
             <ShoppingBag className="text-[#415A77]" size={22} />
@@ -164,39 +164,41 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
 
             <div className="space-y-2.5">
               {items.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                  <input
-                    type="text"
-                    required
-                    placeholder="Item Name (e.g. Samosa Box)"
-                    value={item.name}
-                    onChange={(e) => handleItemChange(idx, 'name', e.target.value)}
-                    className="flex-1 px-3 py-2 bg-white border border-[#D4C4A8] rounded-xl text-xs text-[#0D1B2A] outline-none focus:border-[#0D1B2A]"
-                  />
-                  <input
-                    type="number"
-                    min="1"
-                    required
-                    value={item.quantity}
-                    onChange={(e) => handleItemChange(idx, 'quantity', e.target.value)}
-                    className="w-20 px-3 py-2 bg-white border border-[#D4C4A8] rounded-xl text-xs text-[#0D1B2A] outline-none text-center focus:border-[#0D1B2A]"
-                  />
-                  <input
-                    type="text"
-                    value={item.unit}
-                    onChange={(e) => handleItemChange(idx, 'unit', e.target.value)}
-                    className="w-20 px-3 py-2 bg-white border border-[#D4C4A8] rounded-xl text-xs text-[#0D1B2A] outline-none text-center focus:border-[#0D1B2A]"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeItemRow(idx)}
-                    disabled={items.length === 1}
-                    className={`p-2 text-[#415A77] hover:text-rose-600 transition ${items.length === 1 ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}`}
-                  >
-                    <Trash2 size={16} />
-                  </button>
-                </div>
-              ))}
+  <div key={idx} className="flex flex-wrap sm:flex-nowrap items-center gap-2 bg-white sm:bg-transparent p-2.5 sm:p-0 rounded-xl sm:rounded-none border sm:border-0 border-[#D4C4A8]">
+    <input
+      type="text"
+      required
+      placeholder="Item Name (e.g. Samosa Box)"
+      value={item.name}
+      onChange={(e) => handleItemChange(idx, 'name', e.target.value)}
+      className="w-full sm:flex-1 px-3 py-2 bg-white border border-[#D4C4A8] rounded-xl text-xs text-[#0D1B2A] outline-none focus:border-[#0D1B2A]"
+    />
+    <div className="flex items-center gap-2 w-full sm:w-auto">
+      <input
+        type="number"
+        min="1"
+        required
+        value={item.quantity}
+        onChange={(e) => handleItemChange(idx, 'quantity', e.target.value)}
+        className="w-1/2 sm:w-20 px-3 py-2 bg-white border border-[#D4C4A8] rounded-xl text-xs text-[#0D1B2A] outline-none text-center focus:border-[#0D1B2A]"
+      />
+      <input
+        type="text"
+        value={item.unit}
+        onChange={(e) => handleItemChange(idx, 'unit', e.target.value)}
+        className="w-1/2 sm:w-20 px-3 py-2 bg-white border border-[#D4C4A8] rounded-xl text-xs text-[#0D1B2A] outline-none text-center focus:border-[#0D1B2A]"
+      />
+      <button
+        type="button"
+        onClick={() => removeItemRow(idx)}
+        disabled={items.length === 1}
+        className={`p-2 text-[#415A77] hover:text-rose-600 transition ${items.length === 1 ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}`}
+      >
+        <Trash2 size={16} />
+      </button>
+    </div>
+  </div>
+))}
             </div>
 
             <button
@@ -264,7 +266,7 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
       </div>
 
       {/* Real-Time Demand Tracker & Bid Comparison Board */}
-      <div className="bg-[#FFFFFF] rounded-3xl border border-[#D4C4A8] p-8 shadow-sm">
+      <div className="bg-[#FFFFFF] rounded-3xl border border-[#D4C4A8] p-4 sm:p-8 shadow-sm">
         <h3 className="text-sm font-bold uppercase tracking-wider text-[#0D1B2A] mb-4">
           Live Demand Tracker & Incoming Counter-Offers
         </h3>
@@ -313,7 +315,7 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
                           <p className="text-xs font-bold text-[#0D1B2A]">{b.merchant_name}</p>
                           <p className="text-[11px] text-[#415A77] italic">"{b.note}"</p>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
                           <span className="text-xs font-black text-[#778D7A]">
                             ₹{b.price_per_unit}/unit
                           </span>
