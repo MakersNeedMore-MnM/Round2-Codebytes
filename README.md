@@ -81,7 +81,7 @@ npm run dev
 * **Team Member: Anmol Kumar**
 * **Team Member: Satya Yogieswar**
 
-
+---
 
 * **"What inspired this project?"**  
   *"We noticed that while ordinary consumer deliveries are dominated by aggregators charging high commissions, bulk institutional procurement in neighborhoods is completely broken. A college fest or hackathon team calls 5 different bakeries or xerox shops manually, while those very shops sit empty with idle capacity just 1 km away. We built LocalOps to eliminate the middleman and give small businesses an intelligent reverse-demand engine."*
