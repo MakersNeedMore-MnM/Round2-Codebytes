@@ -6,7 +6,8 @@ import CustomerView from './components/CustomerView';
 import OpportunityCard from './components/OpportunityCard';
 import MerchantRadarMap from './components/MerchantRadarMap';
 import MerchantAICopilot from './components/MerchantAICopilot';
-import { Store, LogOut, Radio, RefreshCw, Bell, ArrowLeft, BatteryCharging, CheckCircle2 } from 'lucide-react';
+import { Store, LogOut, Radio, RefreshCw, Bell, ArrowLeft, BatteryCharging } from 'lucide-react';
+import { API_BASE } from './apiConfig';
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState(() => {
@@ -25,7 +26,7 @@ export default function App() {
 
   // Fetch merchants directory
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/merchants')
+    fetch(`${API_BASE}/api/merchants`)
       .then((res) => res.json())
       .then((data) => setMerchants(data))
       .catch((err) => console.error(err));
@@ -38,7 +39,7 @@ export default function App() {
 
     try {
       // 1. Opportunities
-      const res = await fetch(`http://127.0.0.1:8000/api/merchants/${merchantId}/opportunities`);
+      const res = await fetch(`${API_BASE}/api/merchants/${merchantId}/opportunities`);
       if (!res.ok) throw new Error('Failed to load opportunities');
       const data = await res.json();
 
@@ -55,7 +56,7 @@ export default function App() {
       setOpportunities(data);
 
       // 2. Capacity meter
-      const capRes = await fetch(`http://127.0.0.1:8000/api/merchants/${merchantId}/capacity-stats`);
+      const capRes = await fetch(`${API_BASE}/api/merchants/${merchantId}/capacity-stats`);
       if (capRes.ok) {
         const capData = await capRes.json();
         setCapacityStats(capData);
@@ -96,7 +97,7 @@ export default function App() {
     if (!currentUser?.merchantId) return;
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/requests/${requestId}/claim`, {
+      const res = await fetch(`${API_BASE}/api/requests/${requestId}/claim`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ merchant_id: currentUser.merchantId })
@@ -117,7 +118,7 @@ export default function App() {
     if (!currentUser?.merchantId) return;
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/requests/${requestId}/bid`, {
+      const res = await fetch(`${API_BASE}/api/requests/${requestId}/bid`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

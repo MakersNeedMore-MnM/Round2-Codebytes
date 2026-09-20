@@ -9,6 +9,7 @@ import {
   Briefcase, 
   RefreshCw 
 } from 'lucide-react';
+import { API_BASE } from '../apiConfig';
 
 export default function MerchantAICopilot({ merchant }) {
   const [insights, setInsights] = useState(null);
@@ -18,7 +19,7 @@ export default function MerchantAICopilot({ merchant }) {
     if (!merchant?.id) return;
     setLoading(true);
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/merchants/${merchant.id}/growth-copilot`);
+      const res = await fetch(`${API_BASE}/api/merchants/${merchant.id}/growth-copilot`);
       if (res.ok) {
         const data = await res.json();
         setInsights(data);

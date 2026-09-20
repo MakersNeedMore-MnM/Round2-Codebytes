@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Send, Plus, Trash2, ShoppingBag, MapPin, Phone, MessageCircle, CheckCircle, Clock, FileText, Check } from 'lucide-react';
 import PurchaseOrderModal from './PurchaseOrderModal';
+import { API_BASE } from '../apiConfig';
 
 export default function CustomerView({ postedByName = 'Local Customer' }) {
   const [eventTitle, setEventTitle] = useState('');
@@ -19,7 +20,7 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
 
   const fetchMyRequests = async () => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/customer/requests?posted_by=${encodeURIComponent(postedByName)}`);
+      const res = await fetch(`${API_BASE}/api/customer/requests?posted_by=${encodeURIComponent(postedByName)}`);
       if (res.ok) {
         const data = await res.json();
         setMyRequests(data);
@@ -71,7 +72,7 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
     setSubmitting(true);
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/requests', {
+      const res = await fetch(`${API_BASE}/api/requests`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -104,7 +105,7 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
 
   const handleAcceptBid = async (requestId, bidId) => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/requests/${requestId}/accept-bid`, {
+      const res = await fetch(`${API_BASE}/api/requests/${requestId}/accept-bid`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bid_id: bidId })
@@ -214,7 +215,7 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
               <select
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-                className="w-full px-3 py-2.5 bg-[#F4F1DE]/60 border border-[#D4C4A8] rounded-xl text-xs text-[#0D1B2A] outline-none focus:border-[#0D1B2A]"
+                className="w-full px-3 py-2.5 bg-[#F4F1DE]/60 border border-[#D4C4A8] rounded-xl text-[#0D1B2A] outline-none focus:border-[#0D1B2A]"
               >
                 <option value="Food & Beverage">Food & Beverage</option>
                 <option value="Printing & Banners">Printing & Banners</option>
@@ -357,7 +358,7 @@ export default function CustomerView({ postedByName = 'Local Customer' }) {
                         href={`https://wa.me/${req.claimed_by.phone?.replace(/[^0-9]/g, '')}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="px-3 py-1.5 bg-[#778D7A] hover:bg-[#607363] text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition"
+                        className="px-3.5 py-1.5 bg-[#778D7A] hover:bg-[#607363] text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition"
                       >
                         <MessageCircle size={13} /> WhatsApp
                       </a>
