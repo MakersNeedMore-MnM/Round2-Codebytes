@@ -76,7 +76,7 @@ npm run dev
 
 ---
 
-* **Team Members: **
+## Team Members: 
 * **Team Leader: Prithvi Raj Singh**
 * **Team Member: Anmol Kumar**
 * **Team Member: Satya Yogieswar**
